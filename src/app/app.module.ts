@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SortElementComponent } from './sort-element/sort-element.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SortElementComponent
   ],
   imports: [
     BrowserModule,
