@@ -1,9 +1,10 @@
 <div class="wrapper">
-  <button (click)="generateNewArray()">generate</button>
+  <button (click)="settingService.generateNewArray()">generate</button>
+  <button (click)="sortService.sort()">sort</button>
   <div class="elements">
     <app-sort-element
-      *ngFor="let element of arrayToSort"
-      [height]="(element / maxValue) * 100"
+      *ngFor="let element of settingService.arrayToSort"
+      [height]="(element / settingService.maxValue) * 100"
     ></app-sort-element>
   </div>
 </div>

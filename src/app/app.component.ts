@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SettingsService } from './services/settings.service';
+import { SortService } from './services/sort.service';
 
 @Component({
   selector: 'app-root',
@@ -6,20 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  arraySize = 200;
-  arrayToSort: number[];
-  maxValue: number;
-
-  constructor() {
-    this.generateNewArray();
-  }
-
-  generateNewArray() {
-    this.arrayToSort = Array.from(
-      { length: this.arraySize },
-      () => Math.floor(Math.random() * this.arraySize) + 1
-    );
-
-    this.maxValue = Math.max(...this.arrayToSort);
+  constructor(
+    public sortService: SortService,
+    public settingService: SettingsService
+  ) {
+    this.settingService.generateNewArray();
   }
 }
