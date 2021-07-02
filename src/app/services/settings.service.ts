@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Sort } from '../models/Sort.model';
 
 @Injectable({
   providedIn: 'root',
@@ -7,14 +8,28 @@ export class SettingsService {
   arraySize = 70;
   arrayToSort: number[];
   maxValue: number;
+
+  activeSort: Sort = 'bubble';
+  allSorts: Sort[] = ['bubble', 'selection'];
   constructor() {}
 
   generateNewArray() {
-    this.arrayToSort = Array.from(
-      { length: this.arraySize },
-      () => Math.floor(Math.random() * this.arraySize) + 1
-    );
+    this.arrayToSort = new Array(this.arraySize);
+
+    for (let i = 0; i < this.arraySize; i++) {
+      this.arrayToSort[i] = i + 1;
+    }
+    this.shuffleArray(this.arrayToSort);
 
     this.maxValue = Math.max(...this.arrayToSort);
+  }
+
+  private shuffleArray(array: number[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
   }
 }

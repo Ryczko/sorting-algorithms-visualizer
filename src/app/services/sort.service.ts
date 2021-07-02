@@ -7,11 +7,40 @@ import { SettingsService } from './settings.service';
 export class SortService {
   constructor(private settingsService: SettingsService) {}
 
-  min = 100;
-  maxsSound = 600;
-
   private wait(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  sort() {
+    switch (this.settingsService.activeSort) {
+      case 'bubble':
+        this.bubbleSort();
+        break;
+      case 'selection':
+        this.selectionSort();
+        break;
+      default:
+        this.bubbleSort();
+    }
+  }
+
+  async selectionSort() {
+    const startArray = this.settingsService.arrayToSort;
+
+    for (let i = 0; i < startArray.length; i++) {
+      let minIndex = i;
+      for (let j = i + 1; j < startArray.length; j++) {
+        if (startArray[j] < startArray[minIndex]) {
+          minIndex = j;
+        }
+        await this.wait(0);
+      }
+      if (minIndex !== i) {
+        const temp = startArray[i];
+        startArray[i] = startArray[minIndex];
+        startArray[minIndex] = temp;
+      }
+    }
   }
 
   async bubbleSort() {
