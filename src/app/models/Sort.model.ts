@@ -1,1 +1,1 @@
-export type Sort = 'bubble' | 'selection';
+export type Sort = 'bubble' | 'selection' | 'insertion';

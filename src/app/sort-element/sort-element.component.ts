@@ -6,11 +6,11 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./sort-element.component.scss'],
 })
 export class SortElementComponent implements OnInit {
-  @Input() height: number;
+  @Input() value: number;
 
   ngOnInit(): void {}
 
   getColorValue() {
-    return `hsl(${Math.round(this.height) * 3.6}, 100%, 50%)`;
+    return `hsl(${Math.round(this.value) * 3.6}, 100%, 50%)`;
   }
 }

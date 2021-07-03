@@ -6,7 +6,7 @@
   <div class="elements">
     <app-sort-element
       *ngFor="let element of settingService.arrayToSort"
-      [height]="(element / settingService.maxValue) * 100"
+      [value]="(element / settingService.maxValue) * 100"
     ></app-sort-element>
   </div>
 </div>

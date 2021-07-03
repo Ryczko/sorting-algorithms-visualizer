@@ -7,10 +7,10 @@ import { Sort } from '../models/Sort.model';
 export class SettingsService {
   arraySize = 70;
   arrayToSort: number[];
-  maxValue: number;
+  maxValue = this.arraySize - 1;
 
   activeSort: Sort = 'bubble';
-  allSorts: Sort[] = ['bubble', 'selection'];
+  allSorts: Sort[] = ['bubble', 'selection', 'insertion'];
   constructor() {}
 
   generateNewArray() {
@@ -20,8 +20,6 @@ export class SettingsService {
       this.arrayToSort[i] = i + 1;
     }
     this.shuffleArray(this.arrayToSort);
-
-    this.maxValue = Math.max(...this.arrayToSort);
   }
 
   private shuffleArray(array: number[]) {

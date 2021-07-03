@@ -19,6 +19,9 @@ export class SortService {
       case 'selection':
         this.selectionSort();
         break;
+      case 'insertion':
+        this.insertionSort();
+        break;
       default:
         this.bubbleSort();
     }
@@ -40,6 +43,21 @@ export class SortService {
         startArray[i] = startArray[minIndex];
         startArray[minIndex] = temp;
       }
+    }
+  }
+
+  async insertionSort() {
+    const startArray = this.settingsService.arrayToSort;
+
+    for (let i = 1; i < startArray.length; i++) {
+      const value = startArray[i];
+      let j = i - 1;
+      while (j >= 0 && startArray[j] > value) {
+        startArray[j + 1] = startArray[j];
+        j--;
+        await this.wait(0);
+      }
+      startArray[j + 1] = value;
     }
   }
 
