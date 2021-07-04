@@ -2,6 +2,7 @@
   class="box"
   [ngStyle]="{
     height: value + '%',
-    backgroundColor: 'hsl(' + value * 3.6 + ', 100%, 50%)'
+    width: getElementWidth(),
+    backgroundColor: getColorValue()
   }"
 ></div>

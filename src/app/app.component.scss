@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 0 20px;
+  padding: 0 10px;
   margin: 0 auto;
   max-width: 1440px;
   text-align: center;
@@ -7,5 +7,16 @@
 
 .elements {
   margin-top: 50px;
-  height: 70vh;
+  height: 50vh;
+  margin-bottom: 50px;
+}
+
+button {
+  border: 2px solid var(--buttonSecondColor);
+  color: var(--buttonSecondColor);
+
+  &:hover {
+    box-shadow: 0 0 40px 40px var(--buttonSecondColor) inset;
+    color: var(--buttonColor);
+  }
 }
