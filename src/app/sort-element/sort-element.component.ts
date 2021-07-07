@@ -8,14 +8,11 @@ import { SettingsService } from '../services/settings.service';
 })
 export class SortElementComponent {
   @Input() value: number;
+  @Input() color: string;
 
   constructor(public settingsService: SettingsService) {}
 
-  getColorValue() {
-    return `hsl(${Math.round(this.value) * 3.6}, 100%, 50%)`;
-  }
-
   getElementWidth() {
-    return `calc(${100 / this.settingsService.maxValue}% - 3px)`;
+    return `calc(${100 / (this.settingsService.maxValue + 1)}% - 2px)`;
   }
 }

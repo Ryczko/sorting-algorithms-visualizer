@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Sort } from '../models/Sort.model';
+import { SortType } from '../models/Sort-type.model';
 import { SettingsService } from '../services/settings.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { SettingsService } from '../services/settings.service';
 export class SettingsComponent {
   constructor(public settingsService: SettingsService) {}
 
-  changeSort(newSort: Sort) {
+  changeSort(newSort: SortType) {
     this.settingsService.activeSort = newSort;
   }
 }

@@ -6,20 +6,33 @@ import { AbstractSort } from './abstract-sort.service';
 })
 export class BubbleSortService extends AbstractSort {
   async sort() {
-    let startArray = this.settingsService.arrayToSort;
+    const {
+      arrayToSort: array,
+      comparedColor,
+      unsortedColor,
+      getSortedColorValue,
+      maxValue,
+    } = this.settingsService;
 
-    for (let i = startArray.length; i > 0; i--) {
+    for (let i = array.length; i > 0; i--) {
       let noSwap = true;
 
       for (let j = 0; j < i - 1; j++) {
-        if (startArray[j] > startArray[j + 1]) {
-          startArray = this.swap(startArray, j, j + 1);
+        array[j].color = comparedColor;
+        array[j + 1].color = comparedColor;
+
+        if (array[j].value > array[j + 1].value) {
+          this.swap(array, j, j + 1);
           noSwap = false;
         }
 
-        await this.wait(0);
+        await this.wait();
+        array[j].color = unsortedColor;
+        array[j + 1].color = unsortedColor;
       }
+      array[i - 1].color = getSortedColorValue(array[i - 1].value, maxValue);
       if (noSwap) break;
     }
+    this.completeSort();
   }
 }

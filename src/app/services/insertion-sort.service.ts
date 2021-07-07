@@ -6,17 +6,35 @@ import { AbstractSort } from './abstract-sort.service';
 })
 export class InsertionSortService extends AbstractSort {
   async sort() {
-    const startArray = this.settingsService.arrayToSort;
+    const {
+      arrayToSort: array,
+      comparedColor,
+      getSortedColorValue,
+      maxValue,
+    } = this.settingsService;
 
-    for (let i = 1; i < startArray.length; i++) {
-      const value = startArray[i];
+    array[0].color = getSortedColorValue(array[0].value, maxValue);
+    for (let i = 1; i < array.length; i++) {
+      const tempElement = array[i];
       let j = i - 1;
-      while (j >= 0 && startArray[j] > value) {
-        startArray[j + 1] = startArray[j];
+
+      array[i].color = comparedColor;
+
+      while (j >= 0 && array[j].value > tempElement.value) {
+        array[j].color = comparedColor;
+
+        array[j + 1] = array[j];
         j--;
-        await this.wait(0);
+        await this.wait();
+
+        for (let k = i; k >= 0; k--) {
+          array[k].color = getSortedColorValue(array[k].value, maxValue);
+        }
       }
-      startArray[j + 1] = value;
+      array[j + 1] = tempElement;
+      array[i].color = getSortedColorValue(array[i].value, maxValue);
     }
+
+    this.completeSort();
   }
 }
