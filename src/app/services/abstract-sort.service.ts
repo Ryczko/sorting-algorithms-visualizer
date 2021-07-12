@@ -26,10 +26,7 @@ export abstract class AbstractSort {
     }
 
     for (let i = 0; i < array.length; i++) {
-      array[i].color = this.settingsService.getSortedColorValue(
-        array[i].value,
-        this.settingsService.maxValue
-      );
+      array[i].color = this.settingsService.sortedColor;
       await this.wait(5);
     }
   }

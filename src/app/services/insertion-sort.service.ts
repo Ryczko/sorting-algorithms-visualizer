@@ -9,11 +9,10 @@ export class InsertionSortService extends AbstractSort {
     const {
       arrayToSort: array,
       comparedColor,
-      getSortedColorValue,
-      maxValue,
+      sortedColor,
     } = this.settingsService;
 
-    array[0].color = getSortedColorValue(array[0].value, maxValue);
+    array[0].color = sortedColor;
     for (let i = 1; i < array.length; i++) {
       const tempElement = array[i];
       let j = i - 1;
@@ -28,11 +27,11 @@ export class InsertionSortService extends AbstractSort {
         await this.wait();
 
         for (let k = i; k >= 0; k--) {
-          array[k].color = getSortedColorValue(array[k].value, maxValue);
+          array[k].color = sortedColor;
         }
       }
       array[j + 1] = tempElement;
-      array[i].color = getSortedColorValue(array[i].value, maxValue);
+      array[i].color = sortedColor;
     }
 
     this.completeSort();

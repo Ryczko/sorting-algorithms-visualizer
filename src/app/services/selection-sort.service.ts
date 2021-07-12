@@ -10,8 +10,7 @@ export class SelectionSortService extends AbstractSort {
       arrayToSort: array,
       comparedColor,
       unsortedColor,
-      getSortedColorValue,
-      maxValue,
+      sortedColor,
     } = this.settingsService;
 
     for (let i = 0; i < array.length; i++) {
@@ -31,7 +30,7 @@ export class SelectionSortService extends AbstractSort {
       if (minIndex !== i) {
         this.swap(array, i, minIndex);
       }
-      array[i].color = getSortedColorValue(array[i].value, maxValue);
+      array[i].color = sortedColor;
     }
 
     this.completeSort();

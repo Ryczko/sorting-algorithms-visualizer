@@ -8,17 +8,14 @@ import { SortType } from '../models/Sort-type.model';
 export class SettingsService {
   arraySize = 90;
   arrayToSort: SortElement[];
-  delay = 1;
+  delay = 10;
   unsortedColor = 'white';
   comparedColor = 'black';
+  sortedColor = 'green';
   maxValue = this.arraySize - 1;
 
   activeSort: SortType = 'bubble';
-  allSorts: SortType[] = ['bubble', 'selection', 'insertion'];
-
-  getSortedColorValue(value: number, maxValue: number) {
-    return `hsl(${Math.round((value / maxValue) * 100) * 3.6}, 100%, 50%)`;
-  }
+  allSorts: SortType[] = ['bubble', 'selection', 'insertion', 'merge'];
 
   generateNewArray() {
     this.arrayToSort = new Array(this.arraySize);

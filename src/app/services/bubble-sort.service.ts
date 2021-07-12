@@ -10,8 +10,7 @@ export class BubbleSortService extends AbstractSort {
       arrayToSort: array,
       comparedColor,
       unsortedColor,
-      getSortedColorValue,
-      maxValue,
+      sortedColor,
     } = this.settingsService;
 
     for (let i = array.length; i > 0; i--) {
@@ -30,7 +29,7 @@ export class BubbleSortService extends AbstractSort {
         array[j].color = unsortedColor;
         array[j + 1].color = unsortedColor;
       }
-      array[i - 1].color = getSortedColorValue(array[i - 1].value, maxValue);
+      array[i - 1].color = sortedColor;
       if (noSwap) break;
     }
     this.completeSort();
